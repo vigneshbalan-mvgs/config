@@ -360,7 +360,7 @@ for_window [class=TelegramDesktop] focus
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
 # install picom package (yay -S picom)
 # start using default config 
-#exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b
 #
 # for custom config:
 #exec_always --no-startup-id picom --config  ~/.config/picom.conf
@@ -614,9 +614,9 @@ mode "$mode_system" {
 bindsym $mod+Shift+a mode "$mode_system"
 
 
-bindsym F4  exec --no-startup-id $Locker && systemctl suspend, mode "default"
-bindsym F5  exec --no-startup-id systemctl poweroff -i, mode "default"
-bindsym F6  exec --no-startup-id systemctl reboot , mode "default"
+bindsym $mod+F4  exec --no-startup-id $Locker && systemctl suspend, mode "default"
+bindsym $mod+F5  exec --no-startup-id systemctl poweroff -i, mode "default"
+bindsym $mod+F6  exec --no-startup-id systemctl reboot , mode "default"
 
 exec --no-startup-id compton -b -f 
 
