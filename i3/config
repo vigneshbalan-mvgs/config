@@ -62,7 +62,7 @@ gaps outer 3
 #default_border normal
 
 # window title alignment
-#title_align center
+title_align center
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -298,6 +298,7 @@ bindsym $mod+n exec --no-startup-id /usr/bin/thunar
 bindsym Print exec --no-startup-id scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/Screentshots$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 
+
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
@@ -365,10 +366,10 @@ for_window [class=TelegramDesktop] focus
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
 # install picom package (yay -S picom)
 # start using default config 
-exec_always --no-startup-id picom -b
+#exec_always --no-startup-id picom -b
 #
 # for custom config:
-#exec_always --no-startup-id picom --config  ~/.config/picom.conf
+exec_always --no-startup-id picom --config  ~/.config/picom.conf
 
 #############################################
 # autostart applications/services on login: #
@@ -402,8 +403,8 @@ exec_always --no-startup-id conky
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-# exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+ exec --no-startup-id sleep 1 && nitrogen --restore
+#exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -491,7 +492,7 @@ for_window [class="urxvt"] border pixel 1
 ######################################
 
 # Define colors variables:
-set $darkbluetrans	#08052be6
+set $darkbluetrans	#08052b11
 set $darkblue		#08052b
 set $lightblue		#5294e2
 set $urgentred		#e53935
@@ -514,13 +515,15 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # bar settings (input comes from i3blocks) #
 ############################################
 
+
+
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: Noto Sans Regular 10
+                font pango: Noto Sans Regular 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position top
-#	    	i3bar_command i3bar --transparency
+	    	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    #tray_output primary
@@ -530,17 +533,17 @@ bar {
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers yes
-##strip_workspace_name no
+strip_workspace_name yes
 
 		    colors {
 		    separator          $purple
-		    background         $darkgrey
+		    background         $darkbluetrans
 		    statusline         $white
 #                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+		focused_workspace	$darkbluetrans         	$darkbluetrans	$purple         $purple
+		active_workspace	$grey     	        $darkbluetrans  $darkgrey	$purple
+		inactive_workspace	$darkbluetrans   	$darkbluetrans	$grey		$purple
+		urgent_workspace	$urgentred	    	$darkbluetrans	$white		$purple
 	}
 }
 
@@ -575,9 +578,15 @@ strip_workspace_numbers yes
 #	}
 #}
 
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+
 #####################################
 # Application menu handled by rofi: #
 #####################################
+
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
@@ -626,7 +635,7 @@ bindsym $mod+F4  exec --no-startup-id $Locker && systemctl suspend, mode "defaul
 bindsym $mod+F5  exec --no-startup-id systemctl poweroff -i, mode "default"
 bindsym $mod+F6  exec --no-startup-id systemctl reboot , mode "default"
 
-exec --no-startup-id compton -b -f 
+exec --no-startup-id picom -b -f 
 
 
 mode "resize" {
