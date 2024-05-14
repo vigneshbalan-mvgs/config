@@ -105,10 +105,10 @@ nnoremap <leader>si V>}=
 nnoremap <leader>pa :set paste!<CR>
 
 " Open the quickfix list
-nnoremap <leader>qo :copen<CR>
+"nnoremap <leader>qo :copen<CR>
 
 " Close the quickfix list
-nnoremap <leader>qc :cclose<CR>
+"nnoremap <leader>qc :cclose<CR>
 
 " Toggle line numbers
 nnoremap <leader>ln :set number!<CR>
