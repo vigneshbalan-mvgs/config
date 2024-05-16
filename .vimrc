@@ -39,7 +39,7 @@ nnoremap <leader>bp :bp<CR>   " Go to the previous buffer
 nnoremap <leader>bd :bd<CR>   " Close the current buffer
 
 " Toggle spell check
-"nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
 
 " Execute a custom command
 nnoremap <leader>mycommand :echo "Hello, Vim!"<CR>
@@ -127,7 +127,7 @@ nnoremap <leader>rr :GundoToggle<CR>
 
 
 " Automatically reload .vimrc when saved
-autocmd BufWritePost .vimrc source %
+"autocmd BufWritePost .vimrc source %
 
 " Colorscheme
 
@@ -141,10 +141,10 @@ call plug#begin('~/.vim/plugged')
 
 " Specify plugins here
 " Example plugins:
-Plug 'tpope/vim-commentary'       " Comment/uncomment code
-Plug 'junegunn/fzf.vim'           " Fuzzy file finder
-Plug 'sjl/gundo.vim'              " undo tree
-Plug 'nvim-telescope/telescope.nvim'
+ Plug 'tpope/vim-commentary'       " Comment/uncomment code
+ Plug 'junegunn/fzf.vim'           " Fuzzy file finder
+ Plug 'sjl/gundo.vim'              " undo tree
+ Plug 'nvim-telescope/telescope.nvim'
 " Add other plugins here...
 
 call plug#end()
