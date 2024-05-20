@@ -162,7 +162,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-#bindsym $mod+g layout tabbed
+bindsym $mod+g layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -209,7 +209,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+w exec --no-startup-id /usr/bin/waterfox
 bindsym $mod+n exec --no-startup-id thunar Downloads
 bindsym $mod+o exec --no-startup-id /usr/bin/chromium
 bindsym Print exec --no-startup-id scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/Screentshots$(date +"%Y-%m-%d-%T")-screenshot.png"
@@ -239,23 +239,26 @@ set $ws10 "10:"
 
 # Assign specific applications to workspaces
 assign [class="kitty"] $ws1
-assign [class="(?i)firefox"] $ws2
+assign [class="(?i)waterfox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Thunderbird"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [class="obs"] $ws6
+assign [class="discord"] $ws8
+assign [class="(?i)chromium"] $ws7
+
 
 # Catch-all assignment for other applications
-assign [class=".*"] $ws7
 
 # Automatic set focus for new windows if they open on another workspace than the current
 for_window [class="kitty"] focus
-for_window [class="(?i)firefox"] focus
+for_window [class="(?i)waterfox"] focus
 for_window [class="Thunar"] focus
 for_window [class="Thunderbird"] focus
 for_window [class="TelegramDesktop"] focus
 for_window [class="obs"] focus
-for_window [class="chromium"] focus
+for_window [class="(?i)chromium"] focus
+for_window [class="discord"] focus
 
 ##############
 # compositor #
@@ -352,15 +355,18 @@ exec --no-startup-id /usr/bin/dunst
 #exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 1 && firefox
+exec --no-startup-id sleep 1 && waterfox
 exec --no-startup-id sleep 2 && thunar
-exec --no-startup-id sleep 3 && kitty tmux
+exec --no-startup-id sleep 8 && kitty tmux
 exec --no-startup-id sleep 4 && obs
+exec --no-startup-id sleep 5 && discard
+exec --no-startup-id sleep 7 && chromium
 #exec --no-startup-id sleep 5 && thunderbird
 
 
 #bluethoth
-#exec --no-startup-id systemctl start bluetooth.service
+exec --no-startup-id systemctl start bluetooth.service
+
 
 ###############
 # system tray #
@@ -424,9 +430,9 @@ set $yellowbrown	#e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$purple
+client.unfocused	    	$darkbluetrans	$darkbluetrans	$grey		$darkgrey	$darkbluetrans
+client.focused_inactive		$darkbluetrans	$darkblue	$grey		$black		$darkbluetrans
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 ############################################
@@ -438,7 +444,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-                font pango: Noto Sans Regular 10
+                font pango: Noto Sans Regular 11
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position top
 	    	i3bar_command i3bar --transparency
