@@ -23,3 +23,23 @@ then i press p to pull the changes to the github
 
 
 thank you 
+
+
+
+need to install 
+
+
+obs
+steam
+waterfox
+nitrogen
+discord
+code 
+boxes
+kitty
+vim 
+neovim
+
+
+and good to go
+
