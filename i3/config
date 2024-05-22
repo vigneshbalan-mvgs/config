@@ -7,7 +7,9 @@ workspace_layout default
 
 title_align center
 
+
 floating_modifier $mod
+
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -15,79 +17,6 @@ bindsym $mod+Shift+Tab workspace prev
 
 bindsym $mod+h workspace prev
 bindsym $mod+l workspace next
-
-# switch to workspace
-bindcode $mod+10    workspace  $ws1
-bindcode $mod+11    workspace  $ws2
-bindcode $mod+12    workspace  $ws3
-bindcode $mod+13    workspace  $ws4
-bindcode $mod+14    workspace  $ws5
-bindcode $mod+15    workspace  $ws6
-bindcode $mod+16    workspace  $ws7
-bindcode $mod+17    workspace  $ws8
-bindcode $mod+18    workspace  $ws9
-bindcode $mod+19    workspace  $ws10
-
-# switch to workspace with numpad keys
-bindcode $mod+87 workspace $ws1
-bindcode $mod+88 workspace $ws2
-bindcode $mod+89 workspace $ws3
-bindcode $mod+83 workspace $ws4
-bindcode $mod+84 workspace $ws5
-bindcode $mod+85 workspace $ws6
-bindcode $mod+79 workspace $ws7
-bindcode $mod+80 workspace $ws8
-bindcode $mod+81 workspace $ws9
-bindcode $mod+90 workspace $ws10
-
-# switch to workspace with numlock numpad keys
-bindcode $mod+Mod2+87 workspace $ws1
-bindcode $mod+Mod2+88 workspace $ws2
-bindcode $mod+Mod2+89 workspace $ws3
-bindcode $mod+Mod2+83 workspace $ws4
-bindcode $mod+Mod2+84 workspace $ws5
-bindcode $mod+Mod2+85 workspace $ws6
-bindcode $mod+Mod2+79 workspace $ws7
-bindcode $mod+Mod2+80 workspace $ws8
-bindcode $mod+Mod2+81 workspace $ws9
-bindcode $mod+Mod2+90 workspace $ws10
-
-# move focused container to workspace
-bindcode $mod+Shift+10    move container to workspace  $ws1
-bindcode $mod+Shift+11    move container to workspace  $ws2
-bindcode $mod+Shift+12    move container to workspace  $ws3
-bindcode $mod+Shift+13    move container to workspace  $ws4
-bindcode $mod+Shift+14    move container to workspace  $ws5
-bindcode $mod+Shift+15    move container to workspace  $ws6
-bindcode $mod+Shift+16    move container to workspace  $ws7
-bindcode $mod+Shift+17    move container to workspace  $ws8
-bindcode $mod+Shift+18    move container to workspace  $ws9
-bindcode $mod+Shift+19    move container to workspace  $ws10
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
-bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
-bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
-bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
-bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
-bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
-bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
-bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
-bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
-bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 	 move container to workspace  $ws1
-bindcode $mod+Shift+88 	 move container to workspace  $ws2
-bindcode $mod+Shift+89 	 move container to workspace  $ws3
-bindcode $mod+Shift+83 	 move container to workspace  $ws4
-bindcode $mod+Shift+84 	 move container to workspace  $ws5
-bindcode $mod+Shift+85 	 move container to workspace  $ws6
-bindcode $mod+Shift+79 	 move container to workspace  $ws7
-bindcode $mod+Shift+80 	 move container to workspace  $ws8
-bindcode $mod+Shift+81 	 move container to workspace  $ws9
-bindcode $mod+Shift+90 	 move container to workspace  $ws10
-
 ######################################
 # keybindings for different actions: #
 ######################################
@@ -211,8 +140,15 @@ bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 ## App shortcuts
 bindsym $mod+w exec --no-startup-id /usr/bin/waterfox
 bindsym $mod+n exec --no-startup-id thunar Downloads
-bindsym $mod+o exec --no-startup-id /usr/bin/chromium
-bindsym Print exec --no-startup-id scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/Screentshots$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym $mod+o exec --no-startup-id /usr/bin/brave
+bindsym $mod+b exec --no-startup-id kitty btop --utf-force
+bindsym $mod+a exec --no-startup-id kitty
+bindsym $mod+c exec --no-startup-id code
+bindsym $mod+s exec --no-startup-id kitty 
+bindsym $mod+x exec --no-startup-id kitty ranger
+
+#screenshot
+bindsym Print exec --no-startup-id scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Pictures/Screentshots/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 
 
@@ -226,39 +162,39 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # Workspace names with emojis
+# Workspace Definitions
 set $ws1 "1:"    
 set $ws2 "2:"     
 set $ws3 "3:"   
-set $ws4 "4:"    
+set $ws4 "4:"    
 set $ws5 "5:"    
-set $ws6 "6:"    
+set $ws6 "6:"  
 set $ws7 "7:"    
 set $ws8 "8:"    
 set $ws9 "9:"     
-set $ws10 "10:"  
+set $ws10 "10:"    
 
 # Assign specific applications to workspaces
 assign [class="kitty"] $ws1
 assign [class="(?i)waterfox"] $ws2
 assign [class="Thunar"] $ws3
-assign [class="Thunderbird"] $ws4
+assign [class="steam"] $ws4
+assign [class="discord"] $ws4
 assign [class="TelegramDesktop"] $ws5
-assign [class="obs"] $ws6
-assign [class="discord"] $ws8
-assign [class="(?i)chromium"] $ws7
-
+assign [class="obs"] $ws5
+assign [class="(?i)brave"] $ws7
+assign [class="Thunderbird"] $ws10
 
 # Catch-all assignment for other applications
 
-# Automatic set focus for new windows if they open on another workspace than the current
 for_window [class="kitty"] focus
 for_window [class="(?i)waterfox"] focus
 for_window [class="Thunar"] focus
-for_window [class="Thunderbird"] focus
 for_window [class="TelegramDesktop"] focus
 for_window [class="obs"] focus
-for_window [class="(?i)chromium"] focus
+for_window [class="(?i)brave"] focus
 for_window [class="discord"] focus
+for_window [class="Thunderbird"] focus
 
 ##############
 # compositor #
@@ -356,12 +292,9 @@ exec --no-startup-id /usr/bin/dunst
 
 # Autostart apps as you like
 exec --no-startup-id sleep 1 && waterfox
-exec --no-startup-id sleep 2 && thunar
-exec --no-startup-id sleep 8 && kitty tmux
-exec --no-startup-id sleep 4 && obs
-exec --no-startup-id sleep 5 && discard
-exec --no-startup-id sleep 7 && chromium
-#exec --no-startup-id sleep 5 && thunderbird
+#exec --no-startup-id sleep 2 && thunar
+exec --no-startup-id sleep 2 && kitty tmux
+#exec --no-startup-id sleep 4 && obs
 
 
 #bluethoth
@@ -409,31 +342,32 @@ for_window [class="urxvt"] border pixel 1
 #for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
 
 # set position of floating window
-#for_window [class=".*"] move position center
+for_window [class=".*"] move position center
 
 ######################################
 # color settings for bar and windows #
 ######################################
 
-# Define colors variables:
-set $darkbluetrans	#08052b00
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
+# Define colors variables for Rose Pine:
+set $base         #232136
+set $overlay      #6e6a86 
+set $surface      #1f1d2e
+set $muted        #908caa 
+set $subtle       #eb6f92 
+set $text         #e0def4 
+set $highlight    #9ccfd8 
+set $highlight2   #c4a7e7 
+set $alert        #eb6f92 
+set $warning      #f6c177  
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$purple
-client.unfocused	    	$darkbluetrans	$darkbluetrans	$grey		$darkgrey	$darkbluetrans
-client.focused_inactive		$darkbluetrans	$darkblue	$grey		$black		$darkbluetrans
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+client.focused		    	$highlight	$base		$text		$overlay	$highlight2
+client.unfocused	    	$surface	$surface	$muted		$overlay	$surface
+client.focused_inactive		$surface	$base		$muted		$base		$surface
+client.urgent		    	$alert		$alert		$text		$warning	$warning
+
+
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -447,7 +381,7 @@ bar {
                 font pango: Noto Sans Regular 11
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position top
-	    	i3bar_command i3bar --transparency
+	    	i3bar_command i3bar
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    #tray_output primary
@@ -459,16 +393,17 @@ bar {
 strip_workspace_numbers yes
 strip_workspace_name no
 
-		    colors {
-		    separator          $purple
-		    background         $darkbluetrans
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	$darkbluetrans         	$darkbluetrans	$purple         $purple
-		active_workspace	$grey     	        $darkbluetrans  $darkgrey	$purple
-		inactive_workspace	$darkbluetrans   	$darkbluetrans	$grey		$purple
-		urgent_workspace	$urgentred	    	$darkbluetrans	$white		$purple
-	}
+	colors {
+                    separator          $subtle
+    background         $base
+    statusline         $text
+    #                         border              bg              txt              indicator
+    focused_workspace  $base               $base            $highlight       $highlight2
+    active_workspace   $overlay            $base            $muted           $highlight2
+    inactive_workspace $base               $base            $muted           $highlight2
+    urgent_workspace   $alert              $base            $text            $highlight2
+}
+
 }
 
 # you can add different bars for multidisplay setups on each display:
@@ -561,7 +496,7 @@ bindsym $mod+F6  exec --no-startup-id systemctl reboot , mode "default"
 bindsym $mod+F3 exec --no-startup-id i3-msg exit, mode "default"
 
 
-exec --no-startup-id picom -b -f 
+exec --no-startup-id picom -b -f
 
 
 mode "resize" {
@@ -592,14 +527,12 @@ bindsym $mod+r mode "resize"
 
 
 # Screenshots
-#bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date)"
-#bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date)"
-#bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date)" | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date)" | xclip -selection clipboard -t image/png
 
 ## Clipboard Screenshots
-#bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-#bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-#bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 
 
@@ -610,3 +543,79 @@ default_border pixel 3
 default_floating_border pixel 3
 for_window [class="^.*"] border  pixel 3
 smart_borders on
+
+
+
+# switch to workspace
+bindcode $mod+10    workspace  $ws1
+bindcode $mod+11    workspace  $ws2
+bindcode $mod+12    workspace  $ws3
+bindcode $mod+13    workspace  $ws4
+bindcode $mod+14    workspace  $ws5
+bindcode $mod+15    workspace  $ws6
+bindcode $mod+16    workspace  $ws7
+bindcode $mod+17    workspace  $ws8
+bindcode $mod+18    workspace  $ws9
+bindcode $mod+19    workspace  $ws10
+
+# switch to workspace with numpad keys
+bindcode $mod+87 workspace $ws1
+bindcode $mod+88 workspace $ws2
+bindcode $mod+89 workspace $ws3
+bindcode $mod+83 workspace $ws4
+bindcode $mod+84 workspace $ws5
+bindcode $mod+85 workspace $ws6
+bindcode $mod+79 workspace $ws7
+bindcode $mod+80 workspace $ws8
+bindcode $mod+81 workspace $ws9
+bindcode $mod+90 workspace $ws10
+
+# switch to workspace with numlock numpad keys
+bindcode $mod+Mod2+87 workspace $ws1
+bindcode $mod+Mod2+88 workspace $ws2
+bindcode $mod+Mod2+89 workspace $ws3
+bindcode $mod+Mod2+83 workspace $ws4
+bindcode $mod+Mod2+84 workspace $ws5
+bindcode $mod+Mod2+85 workspace $ws6
+bindcode $mod+Mod2+79 workspace $ws7
+bindcode $mod+Mod2+80 workspace $ws8
+bindcode $mod+Mod2+81 workspace $ws9
+bindcode $mod+Mod2+90 workspace $ws10
+
+# move focused container to workspace
+bindcode $mod+Shift+10    move container to workspace  $ws1
+bindcode $mod+Shift+11    move container to workspace  $ws2
+bindcode $mod+Shift+12    move container to workspace  $ws3
+bindcode $mod+Shift+13    move container to workspace  $ws4
+bindcode $mod+Shift+14    move container to workspace  $ws5
+bindcode $mod+Shift+15    move container to workspace  $ws6
+bindcode $mod+Shift+16    move container to workspace  $ws7
+bindcode $mod+Shift+17    move container to workspace  $ws8
+bindcode $mod+Shift+18    move container to workspace  $ws9
+bindcode $mod+Shift+19    move container to workspace  $ws10
+
+# move focused container to workspace with numpad keys
+bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
+bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
+bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
+bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
+bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
+bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
+bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
+bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
+bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
+bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
+
+# move focused container to workspace with numpad keys
+bindcode $mod+Shift+87 	 move container to workspace  $ws1
+bindcode $mod+Shift+88 	 move container to workspace  $ws2
+bindcode $mod+Shift+89 	 move container to workspace  $ws3
+bindcode $mod+Shift+83 	 move container to workspace  $ws4
+bindcode $mod+Shift+84 	 move container to workspace  $ws5
+bindcode $mod+Shift+85 	 move container to workspace  $ws6
+bindcode $mod+Shift+79 	 move container to workspace  $ws7
+bindcode $mod+Shift+80 	 move container to workspace  $ws8
+bindcode $mod+Shift+81 	 move container to workspace  $ws9
+bindcode $mod+Shift+90 	 move container to workspace  $ws10
+
+
