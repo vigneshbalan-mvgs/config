@@ -7,6 +7,7 @@
 export EDITOR=vim
 export TERMINAL=kitty
 
+
 alias vim="nvim"
 
 # Color codes
@@ -68,7 +69,8 @@ show_timestamp() {
 }
 
 # Minimal PS1 prompt: username, current folder name, Git branch on one line, timestamp on the next line, input on the next line
-export PS1="\[\033[01;32m\]\u \[\033[01;34m\]\$(parse_directory) \[\033[01;36m\]\$(parse_git_branch)\[\033[00m\]\[\033[01;33m\]\$(show_timestamp)\[\033[00m\]\n\$ "
+export PS1="   \u  \[\033[01;34m\]\W \[\033[01;36m\]\$(parse_git_branch) "
+
 
 # Add these lines to your .bashrc
 # Enable color support for ls and grep
@@ -81,6 +83,29 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 #
+#historyappend
+
+fzf_history_append() {
+    # Use fzf to search through the history and select a command
+    local selected_command=$(history | awk '{$1=""; print substr($0,2)}' | fzf --tac)
+
+    # If a command was selected, append it to the history and execute it
+    if [ -n "$selected_command" ]; then
+        history -s "$selected_command"
+        READLINE_LINE="$selected_command"
+        READLINE_POINT=${#selected_command}
+        echo "Appended to history: $selected_command"
+        # Execute the selected command
+        eval "$selected_command"
+    else
+        echo "No command selected."
+    fi
+}
+
+# Bind the function to Ctrl+r
+bind -x '"\C-r": fzf_history_append'
+
+
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
