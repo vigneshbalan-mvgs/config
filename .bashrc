@@ -8,6 +8,11 @@ export EDITOR=vim
 export TERMINAL=kitty
 
 
+#show all the possibilites 
+bind "set show-all-if-ambiguous on"
+
+
+
 alias vim="nvim"
 
 # Color codes
@@ -30,6 +35,58 @@ alias gp='git pull'
 alias gd='git diff'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias msv='mpv $(fd -e mp4 -e mkv -e avi -e mov -e flv -e wmv | fzf)'
+alias msm='mpv $(fd -e mp3 -e wav -e flac -e aac -e ogg -e m4a | fzf)'
+#nvim files only 
+
+#open function 
+
+op() {
+  local file
+
+  # If no arguments are provided, use fzf to select a file
+  if [ -z "$1" ]; then
+    file=$(fzf)
+    # Check if fzf was canceled
+    if [ -z "$file" ]; then
+      echo "Selection canceled"
+      return 1
+    fi
+  else
+    file="$1"
+  fi
+
+  case "${file,,}" in
+    *.txt|*.md|*.sh|*.py|*.c|*.cpp|*.java|*.html|*.css|*.js)
+      nvim "$file"
+      ;;
+    *.pdf|*.epub|*.mobi)
+      koodo-reader "$file"
+      ;;
+    *.mp4|*.mkv|*.avi|*.mov|*.flv|*.wmv)
+      mpv "$file"
+      ;;
+    *.mp3|*.wav|*.flac|*.aac|*.ogg|*.m4a)
+      mpv "$file"
+      ;;
+    *.jpg|*.jpeg|*.png|*.gif|*.bmp|*.tif|*.tiff)
+      feh "$file"
+      ;;
+    *)
+      xdg-open "$file" 2>/dev/null || open "$file"
+      ;;
+  esac
+}
+
+
+
+#find the direactory
+
+lsd() {
+  local dir
+  dir=$(find ~ -type d | fzf)
+  [ -n "$dir" ] && cd "$dir"
+}
 
 # Increase history size
 HISTSIZE=10000
